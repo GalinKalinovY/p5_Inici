@@ -13,7 +13,7 @@ class Game {
      this.maze = [//MAZE ES EL MAPA ON TINDREM LES BOLES I LES ROQUES. HO DEFINIM EN 0 I 1. 1 ES ROCA.
                   [1,0,0,1],
                   [1,0,0,1],
-                  [0,0,0,1],
+                  [0,1,0,1],
                   [0,0,0,1],
                 ];
 

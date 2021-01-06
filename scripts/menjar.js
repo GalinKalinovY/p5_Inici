@@ -1,4 +1,4 @@
-class Roca extends GameObject{
+class Menjar extends GameObject{
   constructor(x,y){
     super(x,y);
   }
@@ -6,6 +6,7 @@ class Roca extends GameObject{
   show(p){
     /*rocaImng ha de estar definida y cargada ne preload del sketch*/
 
-    p.image(rocaImg,this.coordX,this.coordY);
+    p.image(menjarImg,this.coordX,this.coordY);
   }
+
 }
