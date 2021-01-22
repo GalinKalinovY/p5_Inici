@@ -64,7 +64,7 @@ const s = ( p ) => {
   }*/
 
  p.keyTyped = function() {
-      if (p.key === 'd'){
+      if (p.key === 'd'){ 
         console.log("Estem a dins de moure cap a la dreta");
         pacman.moveRight();
         console.log("coordx",pacman.coordX);
