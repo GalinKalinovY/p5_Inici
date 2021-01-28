@@ -5,7 +5,9 @@ class Roca extends GameObject{
 
   show(p){
     /*rocaImng ha de estar definida y cargada ne preload del sketch*/
-
+    p.image(rocaImg,this.coordX,this.coordY);
+  }
+  showInstanceMode(p,rocaImg){
     p.image(rocaImg,this.coordX,this.coordY);
   }
 }
