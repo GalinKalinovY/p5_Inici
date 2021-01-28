@@ -31,7 +31,7 @@ const s = ( p ) => {
               //console.log("estem posant el menjar");
           }else{
               //console.log("estem posant algo != de menjar ");
-          } 
+          }
         } //for de les j
       } //for de les i
 
@@ -51,11 +51,11 @@ const s = ( p ) => {
 
     //comprobar choque rocas
     for(let i=0; i< arrayRoca.length;i++){
-      pacman.testCollideRock(arrayRoca[i]);
+      pacman.testCollideRock(p,arrayRoca[i]);
     }
     //comprobar choque comida
     for(let i=0; i< arrayMenjar.length;i++){
-      if(pacman.testCollideMenjar(arrayMenjar[i])){
+      if(pacman.testCollideMenjar(p,arrayMenjar[i])){
         arrayMenjar.splice(i,1);
         pacman.score = pacman.score +1;
       }else{
@@ -73,9 +73,6 @@ const s = ( p ) => {
     if(pacman.lives == 0){
       console.log("derrota");
       //es pot fer un prompt
-    }
-    p.drawText(){
-      //podem dibuixar el text
     }
 
   }

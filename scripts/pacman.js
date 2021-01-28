@@ -3,9 +3,9 @@ class Pacman extends GameObject{
     super(x,y);
     //this.frame =1;
     this.direction=2;
-    this.score =0;
+    this.score = 0;
     this.lives = 3;
-    this.speed=10;
+    this.speed = 10;
   }
 
   showInstanceMode(p,pacmanImg){
@@ -18,27 +18,29 @@ class Pacman extends GameObject{
     this.frame++;
     if ( this.frame == 5) this.frame =0;*/
   }
-  testCollideRock(roca){
-    let distanceRockPacman = dist(this.coordX, this.coordY,roca.coordX,roca.coordY);
-    if(distanceRockPacman < 16){//o sizeImage
+  testCollideRock(p,roca){
+    let distanceRockPacman = p.dist(this.coordX, this.coordY,roca.coordX,roca.coordY);
+    if(distanceRockPacman < 32){//o sizeImage
       //es pot posar un switch
       if(this.direction = 0){//dreta
-        moveRight();
-        //this.coordX = this.coordX - this.speed;
+        //moveRight();
+        this.coordX = this.coordX - this.speed;
       }else if (this.direction = 2) {
-        moveDown();
+        //moveDown();
+        this.coordX = this.coordX + this.speed;
       }else if (this.direction= 1) {
-        moveDown();
+        //moveDown();
       }else if (this.direction= 3) {
-        moveUp();
+        //moveUp();
       }
       console.log("CHoque");
     }else{
       console.log("La roca es trobe lluny");
     }
   }
-  textEatFood(menjar){
-    if(distanceRockPacman < 16){
+  testCollideMenjar(p,menjar){
+    let distanceRockPacman = p.dist(this.coordX, this.coordY,roca.coordX,roca.coordY);
+    if(distanceRockPacman < 32){
       return true;
     }else{
       return false;
