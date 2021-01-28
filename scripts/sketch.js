@@ -31,7 +31,7 @@ const s = ( p ) => {
               //console.log("estem posant el menjar");
           }else{
               //console.log("estem posant algo != de menjar ");
-          }
+          } 
         } //for de les j
       } //for de les i
 
