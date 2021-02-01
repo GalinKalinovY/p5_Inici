@@ -31,7 +31,7 @@ const s = ( p ) => {
               //console.log("estem posant el menjar");
           }else{
               //console.log("estem posant algo != de menjar ");
-          }
+          } 
         } //for de les j
       } //for de les i
 
@@ -49,6 +49,35 @@ const s = ( p ) => {
 
     pacman.showInstanceMode(p,pacmanImg);
 
+    //comprobar choque rocas
+    for(let i=0; i< arrayRoca.length;i++){
+      pacman.testCollideRock(arrayRoca[i]);
+    }
+    //comprobar choque comida
+    for(let i=0; i< arrayMenjar.length;i++){
+      if(pacman.testCollideMenjar(arrayMenjar[i])){
+        arrayMenjar.splice(i,1);
+        pacman.score = pacman.score +1;
+      }else{
+        console.log("No menja");
+      }
+    }
+    //fer lo mateix amb els altres tipous de menjars
+
+    //comprovarVictoria
+    if(arrayMenjar.length == 0 || arrayMenjar==null){
+      console.log("victoria");
+      //es pot fer un prompt
+    }
+    //comprovarDerrota
+    if(pacman.lives == 0){
+      console.log("derrota");
+      //es pot fer un prompt
+    }
+    p.drawText(){
+      //podem dibuixar el text
+    }
+
   }
   /*switch (direction) {
     case 1: pacman.showInstanceMode(p,pacmanImg);
@@ -64,7 +93,7 @@ const s = ( p ) => {
   }*/
 
  p.keyTyped = function() {
-      if (p.key === 'd'){ 
+      if (p.key === 'd'){
         console.log("Estem a dins de moure cap a la dreta");
         pacman.moveRight();
         console.log("coordx",pacman.coordX);

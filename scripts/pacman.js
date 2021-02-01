@@ -18,7 +18,32 @@ class Pacman extends GameObject{
     this.frame++;
     if ( this.frame == 5) this.frame =0;*/
   }
-
+  testCollideRock(roca){
+    let distanceRockPacman = dist(this.coordX, this.coordY,roca.coordX,roca.coordY);
+    if(distanceRockPacman < 16){//o sizeImage
+      //es pot posar un switch
+      if(this.direction = 0){//dreta
+        moveRight();
+        //this.coordX = this.coordX - this.speed;
+      }else if (this.direction = 2) {
+        moveDown();
+      }else if (this.direction= 1) {
+        moveDown();
+      }else if (this.direction= 3) {
+        moveUp();
+      }
+      console.log("CHoque");
+    }else{
+      console.log("La roca es trobe lluny");
+    }
+  }
+  textEatFood(menjar){
+    if(distanceRockPacman < 16){
+      return true;
+    }else{
+      return false;
+    }
+  }
     // Las direcciones de Pacman seran : ( es arbitrario y hemos elegido
     //estas por las imagen= la fila cero son el pacman hacia derecha
     // fila 1 son pacman hacia abajo..y asi... ver pac.png)
