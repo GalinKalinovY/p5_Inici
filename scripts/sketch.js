@@ -63,7 +63,7 @@ const s = ( p ) => {
     //fer lo mateix amb els altres tipous de menjars
 
     //comprovarVictoria
-    if(arrayMenjar.length === 0 || arrayMenjar==null){
+    if(arrayMenjar.length === 0 || arrayMenjar===null){
       console.log("victoria");
         window.prompt('Victoria');
       //es pot fer un prompt
