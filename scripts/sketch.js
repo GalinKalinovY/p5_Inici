@@ -9,9 +9,9 @@ const s = ( p ) => {
   var pacman = new Pacman(5*jocActual.sizeImage,6*jocActual.sizeImage);
   p.preload = function() {
     //loading all three images
-    menjarImg = p.loadImage ('../imatges/menjar.JPG');
-    rocaImg = p.loadImage ('../imatges/roca.png');
-    pacmanImg = p.loadImage ('../imatges/pacman.png');
+    menjarImg = p.loadImage ('imatges/menjar.JPG');
+    rocaImg = p.loadImage ('imatges/roca.png');
+    pacmanImg = p.loadImage ('imatges/pacman.png');
   }
 
   p.setup = function() {
@@ -47,8 +47,6 @@ const s = ( p ) => {
        item.showInstanceMode(p,menjarImg);
     });
 
-    pacman.showInstanceMode(p,pacmanImg);
-
     //comprobar choque rocas
     for(let i=0; i< arrayRoca.length;i++){
       pacman.testCollideRock(p,arrayRoca[i]);
@@ -65,16 +63,21 @@ const s = ( p ) => {
     //fer lo mateix amb els altres tipous de menjars
 
     //comprovarVictoria
-    if(arrayMenjar.length == 0 || arrayMenjar==null){
+    if(arrayMenjar.length === 0 || arrayMenjar===null){
       console.log("victoria");
+        window.prompt('Victoria');
       //es pot fer un prompt
     }
     //comprovarDerrota
-    if(pacman.lives == 0){
+    if(pacman.lives === 0){
       console.log("derrota");
+        window.prompt('Derrota');
       //es pot fer un prompt
     }
-
+    //p.drawText(){
+      //podem dibuixar el text
+    //}
+      pacman.showInstanceMode(p,pacmanImg);
   }
   /*switch (direction) {
     case 1: pacman.showInstanceMode(p,pacmanImg);
