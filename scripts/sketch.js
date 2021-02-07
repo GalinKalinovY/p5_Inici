@@ -3,14 +3,14 @@ const s = ( p ) => {
   //var jocActual = new Game();
   //var roca =  new Rock();
   var rocaImg;
-  var jocActual= new Game(10,10);
+  var jocActual= new Game(19,19);
   var arrayRoca = [];
   var arrayMenjar = [];
-  var pacman = new Pacman(5*jocActual.sizeImage,6*jocActual.sizeImage);
+  var pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
   p.preload = function() {
     //loading all three images
-    menjarImg = p.loadImage ('imatges/menjar.JPG');
-    rocaImg = p.loadImage ('imatges/roca.png');
+    menjarImg = p.loadImage ('imatges/menjar.jpg');
+    rocaImg = p.loadImage ('imatges/cubitoLava.png');
     pacmanImg = p.loadImage ('imatges/pacman.png');
   }
 
@@ -79,7 +79,8 @@ const s = ( p ) => {
     //}
       pacman.showInstanceMode(p,pacmanImg);
   }
-  /*switch (direction) {
+
+/*  switch (direction) {
     case 1: pacman.showInstanceMode(p,pacmanImg);
       break;
     case 2: pacman.showInstanceMode(p,pacmanImg);
