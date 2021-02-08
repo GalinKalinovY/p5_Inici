@@ -9,9 +9,13 @@ const s = ( p ) => {
   var pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
   p.preload = function() {
     //loading all three images
-    menjarImg = p.loadImage ('imatges/menjar.jpg');
+    menjarImg = p.loadImage ('imatges/menjarPunts.png');
     rocaImg = p.loadImage ('imatges/cubitoLava.png');
-    pacmanImg = p.loadImage ('imatges/pacman.png');
+    pacmanImgRight = p.loadImage ('imatges/pacmanRight.png');
+    pacmanImgLeft = p.loadImage ('imatges/pacmanLeft.png');
+    pacmanImgUp = p.loadImage ('imatges/pacmanUp.png');
+    pacmanImgDown = p.loadImage ('imatges/pacmanDown.png');
+    //fondoLavaImg = p.loadImage('imatges/lavafondo.png');
   }
 
   p.setup = function() {
@@ -77,21 +81,24 @@ const s = ( p ) => {
     //p.drawText(){
       //podem dibuixar el text
     //}
-      pacman.showInstanceMode(p,pacmanImg);
+      //pacman.showInstanceMode(p,pacmanImg);
+
+      switch (pacman.direction) {
+        case 0: pacman.showInstanceMode(p,pacmanImgRight);
+          break;
+        case 1: pacman.showInstanceMode(p,pacmanImgDown);
+          break;
+        case 2: pacman.showInstanceMode(p,pacmanImgLeft);
+          break;
+        case 3: pacman.showInstanceMode(p,pacmanImgUp);
+          break;
+        default:
+
+      }
+
   }
 
-/*  switch (direction) {
-    case 1: pacman.showInstanceMode(p,pacmanImg);
-      break;
-    case 2: pacman.showInstanceMode(p,pacmanImg);
-      break;
-    case 3: pacman.showInstanceMode(p,pacmanImg);
-      break;
-    case 4: pacman.showInstanceMode(p,pacmanImg);
-      break;
-    default:
 
-  }*/
 
  p.keyTyped = function() {
       if (p.key === 'd'){

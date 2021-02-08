@@ -22,14 +22,25 @@ html {
 
 body {
   margin: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(255, 0, 0, 0.5)),url("../imatges/lavafondo.jpg");
+  background-size: cover;
 }
 
 /**
  * Render the `main` element consistently in IE.
  */
-
+.imatgeLogo{
+  width: 500px;
+  margin-left: 36%;
+}
+.vides{
+  color: white;
+}
 main {
   display: block;
+  margin-top: 5%;
+  margin-left: 32%;
+  margin-bottom: 10%;
 }
 
 /**
