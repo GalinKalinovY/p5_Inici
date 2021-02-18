@@ -11,7 +11,7 @@ const s = ( p ) => {
     //loading all three images
     menjarImg = p.loadImage ('imatges/menjarPunts.png');
     rocaImg = p.loadImage ('imatges/cubitoLava.png');
-    pacmanImgRight = p.loadImage ('imatges/pacmanRight.png');
+    pacmanImgRight = p.loadImage ('imatges/pacman1.gif');
     pacmanImgLeft = p.loadImage ('imatges/pacmanLeft.png');
     pacmanImgUp = p.loadImage ('imatges/pacmanUp.png');
     pacmanImgDown = p.loadImage ('imatges/pacmanDown.png');
@@ -42,7 +42,7 @@ const s = ( p ) => {
   }
 
   p.draw = function() {
-    p.background(51);
+    p.background(0);
 
     arrayRoca.forEach((item)=> {
   	   item.showInstanceMode(p,rocaImg);
