@@ -33,14 +33,12 @@ body {
   width: 500px;
   margin-left: 36%;
 }
-.vides{
-  color: white;
-}
 main {
   display: block;
-  margin-top: 5%;
+  margin-top: -10px;
   margin-left: 32%;
   margin-bottom: 10%;
+
 }
 
 /**

@@ -33,6 +33,7 @@ class Pacman extends GameObject{
         this.coordY = this.coordY + this.speed;
       }
       this.lives -=1;
+      this.score -=10;
       console.log("CHoque");
     } else{
      // console.log("La roca es trobe lluny");

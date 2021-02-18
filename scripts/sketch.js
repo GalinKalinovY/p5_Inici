@@ -3,10 +3,11 @@ const s = ( p ) => {
   //var jocActual = new Game();
   //var roca =  new Rock();
   var rocaImg;
-  var jocActual= new Game(19,19);
+  var jocActual= new Game(19,21);
   var arrayRoca = [];
   var arrayMenjar = [];
   var pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
+  var font,fontsize= 25;
   p.preload = function() {
     //loading all three images
     menjarImg = p.loadImage ('imatges/menjarPunts.png');
@@ -15,13 +16,15 @@ const s = ( p ) => {
     pacmanImgLeft = p.loadImage ('imatges/pacmanLeft.png');
     pacmanImgUp = p.loadImage ('imatges/pacmanUp.png');
     pacmanImgDown = p.loadImage ('imatges/pacmanDown.png');
-    //fondoLavaImg = p.loadImage('imatges/lavafondo.png');
+    font = p.loadFont('fonts/Permanent_Marker/PermanentMarker-Regular.ttf');
   }
 
   p.setup = function() {
 
     p.createCanvas(jocActual.rowGame*jocActual.sizeImage, jocActual.columnGame*jocActual.sizeImage); // Size must be the first statement
 
+      p.textFont(font);
+      p.textSize(fontsize);
     for (let i=0 ; i < jocActual.maze.length;i++) {
        for (let j=0; j < jocActual.maze.length;j++) {
           if ( jocActual.maze[i][j] === 1){
@@ -38,8 +41,17 @@ const s = ( p ) => {
           }
         } //for de les j
       } //for de les i
-
   }
+
+    p.drawText = function()
+    {//text per els punts i les vides
+        p.fill(255);
+        p.text('Punts: ', 10, 647);
+        p.text(pacman.score, 150, 647);
+
+        p.text('Vides : ', 400, 647);
+        p.text(pacman.lives, 500, 647);
+    }
 
   p.draw = function() {
     p.background(0);
@@ -64,24 +76,21 @@ const s = ( p ) => {
         console.log("No menja");
       }
     }
-    //fer lo mateix amb els altres tipous de menjars
+
+    //fer lo mateix amb els altres tipus de menjars
 
     //comprovarVictoria
     if(arrayMenjar.length === 0 || arrayMenjar===null){
       console.log("victoria");
-        window.prompt('Victoria');
+      window.prompt('Victoria');
       //es pot fer un prompt
     }
     //comprovarDerrota
     if(pacman.lives === 0){
       console.log("derrota");
-        window.prompt('Derrota');
-      //es pot fer un prompt
+        p.noLoop();
     }
-    //p.drawText(){
-      //podem dibuixar el text
-    //}
-      //pacman.showInstanceMode(p,pacmanImg);
+    p.drawText();
 
       switch (pacman.direction) {
         case 0: pacman.showInstanceMode(p,pacmanImgRight);
