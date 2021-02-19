@@ -7,7 +7,12 @@ const s = ( p ) => {
   var arrayRoca = [];
   var arrayMenjar = [];
   var pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
+
   var font,fontsize= 25;
+  var fontGameOver = 35;
+  var timer = 120;
+  var seconds, minutes;
+
   p.preload = function() {
     //loading all three images
     menjarImg = p.loadImage ('imatges/menjarPunts.png');
@@ -25,6 +30,8 @@ const s = ( p ) => {
 
       p.textFont(font);
       p.textSize(fontsize);
+      setInterval(p.comptadorText, 10000);
+
     for (let i=0 ; i < jocActual.maze.length;i++) {
        for (let j=0; j < jocActual.maze.length;j++) {
           if ( jocActual.maze[i][j] === 1){
@@ -47,12 +54,49 @@ const s = ( p ) => {
     {//text per els punts i les vides
         p.fill(255);
         p.text('Punts: ', 10, 647);
-        p.text(pacman.score, 150, 647);
+        p.text(pacman.score, 120, 647);
 
-        p.text('Vides : ', 400, 647);
-        p.text(pacman.lives, 500, 647);
+        p.text('Vides : ', 470, 647);
+        p.text(pacman.lives, 570, 647);
+    }
+    p.comptadorText = function (){
+
+        /*if (p.frameCount % 60 == 0 && timer > 0) {
+            timer -=1;
+        }
+        if (timer == 0) {
+            p.gameOver();
+        }*/
+        if (p.frameCount % 60 == 0 && timer > 0) {
+            timer-=1;
+        }
+        minutes = p.floor(timer/60);
+        seconds = timer % 60;
+        p.text(minutes+":"+seconds, 300, 647);
+
+        if (timer < 1) {
+            p.gameOver();
+        }
+    }
+    p.gameOver = function (){
+        p.fill('red');
+        p.textSize(fontGameOver);
+        p.text("GAME OVER", 200, 647);
+        p.noLoop();
+        restartGame();
     }
 
+    /*function restartGame(){
+      p.clear();
+      fillMap();
+      mypcamn.coodx=S;
+      mypacamn.coordy=;
+      mypacman.lives =3;
+      mypacamns.score =0;
+      temps a tope
+        p.loop();
+    }
+*/
   p.draw = function() {
     p.background(0);
 
@@ -76,6 +120,9 @@ const s = ( p ) => {
         console.log("No menja");
       }
     }
+      //funcoins de dubuixar al canvas
+      p.drawText();
+      p.comptadorText();
 
     //fer lo mateix amb els altres tipus de menjars
 
@@ -88,9 +135,9 @@ const s = ( p ) => {
     //comprovarDerrota
     if(pacman.lives === 0){
       console.log("derrota");
-        p.noLoop();
+      p.gameOver();
+      p.noLoop();
     }
-    p.drawText();
 
       switch (pacman.direction) {
         case 0: pacman.showInstanceMode(p,pacmanImgRight);
