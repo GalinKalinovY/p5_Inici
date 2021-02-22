@@ -34,6 +34,7 @@ class Pacman extends GameObject{
       }
       this.lives -=1;
       this.score -=10;
+      alert("Has perdut una vida! Vigila")
       console.log("CHoque");
     } else{
      // console.log("La roca es trobe lluny");

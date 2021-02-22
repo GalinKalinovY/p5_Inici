@@ -12,6 +12,7 @@ const s = ( p ) => {
   var fontGameOver = 35;
   var timer = 120;
   var seconds, minutes;
+  var button;
 
   p.preload = function() {
     //loading all three images
@@ -27,10 +28,13 @@ const s = ( p ) => {
   p.setup = function() {
 
     p.createCanvas(jocActual.rowGame*jocActual.sizeImage, jocActual.columnGame*jocActual.sizeImage); // Size must be the first statement
+      button = p.createButton('Reiniciar Partida');
+      button.position(19, 19);
+      button.mousePressed(p.restartGame);
 
       p.textFont(font);
       p.textSize(fontsize);
-      setInterval(p.comptadorText, 10000);
+      setInterval(p.comptadorText, 1000);
 
     for (let i=0 ; i < jocActual.maze.length;i++) {
        for (let j=0; j < jocActual.maze.length;j++) {
@@ -78,25 +82,37 @@ const s = ( p ) => {
             p.gameOver();
         }
     }
+    p.victory = function (){
+        p.fill('green');
+        p.textSize(fontGameOver);
+        p.text("VICTORY!!!", 200, 647);
+        p.noLoop();
+    }
     p.gameOver = function (){
         p.fill('red');
         p.textSize(fontGameOver);
         p.text("GAME OVER", 200, 647);
         p.noLoop();
-        restartGame();
+        //p.restartGame();
+    }
+    p.pacmanSpawn= function (){
+       pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
+        p.setup();
+        p.draw();
+        console.log("dibuixem el segon pacman");
     }
 
-    /*function restartGame(){
-      p.clear();
-      fillMap();
-      mypcamn.coodx=S;
-      mypacamn.coordy=;
-      mypacman.lives =3;
-      mypacamns.score =0;
-      temps a tope
+    p.restartGame= function (){
+        pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
+        pacman.lives= 3;
+        pacman.score= 0;
         p.loop();
+        p.clear();
+        p.setup();
+        p.draw();
+        timer=120;
     }
-*/
+
   p.draw = function() {
     p.background(0);
 
@@ -109,7 +125,10 @@ const s = ( p ) => {
 
     //comprobar choque rocas
     for(let i=0; i< arrayRoca.length;i++){
-      pacman.testCollideRock(p,arrayRoca[i]);
+      if(pacman.testCollideRock(p,arrayRoca[i])) {
+          //tornar el pacman a la posicio de inici treient li una vida i fent el soroll del xoc.
+          p.pacmanSpawn();
+      }
     }
     //comprobar choque comida
     for(let i=0; i< arrayMenjar.length;i++){
@@ -129,7 +148,7 @@ const s = ( p ) => {
     //comprovarVictoria
     if(arrayMenjar.length === 0 || arrayMenjar===null){
       console.log("victoria");
-      window.prompt('Victoria');
+      p.victory();
       //es pot fer un prompt
     }
     //comprovarDerrota
