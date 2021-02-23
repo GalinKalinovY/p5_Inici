@@ -19,9 +19,9 @@ const s = ( p ) => {
     menjarImg = p.loadImage ('imatges/menjarPunts.png');
     rocaImg = p.loadImage ('imatges/cubitoLava.png');
     pacmanImgRight = p.loadImage ('imatges/pacman1.gif');
-    pacmanImgLeft = p.loadImage ('imatges/pacmanLeft.png');
-    pacmanImgUp = p.loadImage ('imatges/pacmanUp.png');
-    pacmanImgDown = p.loadImage ('imatges/pacmanDown.png');
+    pacmanImgLeft = p.loadImage ('imatges/pacman4.gif');
+    pacmanImgUp = p.loadImage ('imatges/pacman3.gif');
+    pacmanImgDown = p.loadImage ('imatges/pacman2.gif');
     font = p.loadFont('fonts/Permanent_Marker/PermanentMarker-Regular.ttf');
   }
 
