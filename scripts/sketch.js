@@ -10,9 +10,10 @@ const s = ( p ) => {
 
   var font,fontsize= 25;
   var fontGameOver = 35;
-  var timer = 120;
+  var timer;
   var seconds, minutes;
   var button;
+  var songPartidaInici;
 
   p.preload = function() {
     //loading all three images
@@ -22,40 +23,59 @@ const s = ( p ) => {
     pacmanImgLeft = p.loadImage ('imatges/pacman4.gif');
     pacmanImgUp = p.loadImage ('imatges/pacman3.gif');
     pacmanImgDown = p.loadImage ('imatges/pacman2.gif');
+    //punts vides i ttot lo altre
     font = p.loadFont('fonts/Permanent_Marker/PermanentMarker-Regular.ttf');
+    //so del joc
+    p.soundFormats('wav' , 'ogg');
+    songPartidaInici = p.loadSound('sounds/pacman_beginning.wav');
   }
 
   p.setup = function() {
 
-    p.createCanvas(jocActual.rowGame*jocActual.sizeImage, jocActual.columnGame*jocActual.sizeImage); // Size must be the first statement
+      p.iniciJoc();
+
       button = p.createButton('Reiniciar Partida');
       button.position(19, 19);
       button.mousePressed(p.restartGame);
+      songPartidaInici.play();
 
       p.textFont(font);
       p.textSize(fontsize);
       setInterval(p.comptadorText, 1000);
 
-    for (let i=0 ; i < jocActual.maze.length;i++) {
-       for (let j=0; j < jocActual.maze.length;j++) {
-          if ( jocActual.maze[i][j] === 1){
-              arrayRoca.push( new Roca(i*jocActual.sizeImage, j*jocActual.sizeImage));
-            //  console.log("estem posant una roca");
-          }else{
-              //console.log("estem posant algo != de roca ");
-          }
-          if ( jocActual.maze[i][j] === 0){
-              arrayMenjar.push( new Menjar(i*jocActual.sizeImage, j*jocActual.sizeImage));
-              //console.log("estem posant el menjar");
-          }else{
-              //console.log("estem posant algo != de menjar ");
-          }
-        } //for de les j
-      } //for de les i
-  }
 
-    p.drawText = function()
-    {//text per els punts i les vides
+  }
+    p.iniciJoc = function(){//funcio de iniciar el joc on tindrem el pacman, timer i mes coses inicialitzades.
+      pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
+      pacman.lives= 3;
+      pacman.score= 0;
+      p.loop();
+      p.clear();
+      timer=120;
+      p.dibuixarMapa();
+    }
+    p.dibuixarMapa = function(){//funcio de dibuixarMapa on tindrem a dins el maze i el canvas.
+        p.createCanvas(jocActual.rowGame*jocActual.sizeImage, jocActual.columnGame*jocActual.sizeImage); // Size must be the first statement
+        for (let i=0 ; i < jocActual.maze.length;i++) {
+           for (let j=0; j < jocActual.maze.length;j++) {
+              if ( jocActual.maze[i][j] === 1){
+                  arrayRoca.push( new Roca(i*jocActual.sizeImage, j*jocActual.sizeImage));
+                //  console.log("estem posant una roca");
+              }else{
+                  //console.log("estem posant algo != de roca ");
+              }
+              if ( jocActual.maze[i][j] === 0){
+                  arrayMenjar.push( new Menjar(i*jocActual.sizeImage, j*jocActual.sizeImage));
+                  //console.log("estem posant el menjar");
+              }else{
+                  //console.log("estem posant algo != de menjar ");
+              }
+            } //for de les j
+          } //for de les i
+    }
+
+    p.drawText = function()//text per els punts i les vides
+    {
         p.fill(255);
         p.text('Punts: ', 10, 647);
         p.text(pacman.score, 120, 647);
@@ -63,8 +83,7 @@ const s = ( p ) => {
         p.text('Vides : ', 470, 647);
         p.text(pacman.lives, 570, 647);
     }
-    p.comptadorText = function (){
-
+    p.comptadorText = function (){//funcio del comptador de la partida.
         /*if (p.frameCount % 60 == 0 && timer > 0) {
             timer -=1;
         }
@@ -82,27 +101,21 @@ const s = ( p ) => {
             p.gameOver();
         }
     }
-    p.victory = function (){
+    p.victory = function (){//funcio de la victoria
         p.fill('green');
         p.textSize(fontGameOver);
         p.text("VICTORY!!!", 200, 647);
         p.noLoop();
     }
-    p.gameOver = function (){
+    p.gameOver = function (){//funcio de la derrota final
         p.fill('red');
         p.textSize(fontGameOver);
         p.text("GAME OVER", 200, 647);
         p.noLoop();
         //p.restartGame();
     }
-    p.pacmanSpawn= function (){
-       pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
-        p.setup();
-        p.draw();
-        console.log("dibuixem el segon pacman");
-    }
 
-    p.restartGame= function (){
+    p.restartGame= function (){//funcio de reiniciar la partida.
         pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
         pacman.lives= 3;
         pacman.score= 0;
