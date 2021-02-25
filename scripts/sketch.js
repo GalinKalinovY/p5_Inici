@@ -6,7 +6,7 @@ const s = ( p ) => {
   var jocActual= new Game(19,21);
   var arrayRoca = [];
   var arrayMenjar = [];
-  var pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
+  var pacman;
 
   var font,fontsize= 25;
   var fontGameOver = 35;
@@ -14,6 +14,8 @@ const s = ( p ) => {
   var seconds, minutes;
   var button;
   var songPartidaInici;
+  var pacmanMoviment;
+  var pacmanMort;
 
   p.preload = function() {
     //loading all three images
@@ -28,21 +30,18 @@ const s = ( p ) => {
     //so del joc
     p.soundFormats('wav' , 'ogg');
     songPartidaInici = p.loadSound('sounds/pacman_beginning.wav');
+    pacmanMoviment = p.loadSound('sounds/pacman_chomp.wav');
+    pacmanMort = p.loadSound('sounds/pacman_death.wav');
   }
 
   p.setup = function() {
 
       p.iniciJoc();
 
-      button = p.createButton('Reiniciar Partida');
+      /*button = p.createButton('Reiniciar Partida');
       button.position(19, 19);
       button.mousePressed(p.restartGame);
-      songPartidaInici.play();
-
-      p.textFont(font);
-      p.textSize(fontsize);
-      setInterval(p.comptadorText, 1000);
-
+      */
 
   }
     p.iniciJoc = function(){//funcio de iniciar el joc on tindrem el pacman, timer i mes coses inicialitzades.
@@ -53,6 +52,7 @@ const s = ( p ) => {
       p.clear();
       timer=120;
       p.dibuixarMapa();
+      songPartidaInici.play();
     }
     p.dibuixarMapa = function(){//funcio de dibuixarMapa on tindrem a dins el maze i el canvas.
         p.createCanvas(jocActual.rowGame*jocActual.sizeImage, jocActual.columnGame*jocActual.sizeImage); // Size must be the first statement
@@ -76,6 +76,9 @@ const s = ( p ) => {
 
     p.drawText = function()//text per els punts i les vides
     {
+        p.textFont(font);
+        p.textSize(fontsize);
+
         p.fill(255);
         p.text('Punts: ', 10, 647);
         p.text(pacman.score, 120, 647);
@@ -84,7 +87,10 @@ const s = ( p ) => {
         p.text(pacman.lives, 570, 647);
     }
     p.comptadorText = function (){//funcio del comptador de la partida.
-        /*if (p.frameCount % 60 == 0 && timer > 0) {
+
+        setInterval(p.comptadorText, 100000);
+
+      /*if (p.frameCount % 60 == 0 && timer > 0) {
             timer -=1;
         }
         if (timer == 0) {
@@ -128,6 +134,8 @@ const s = ( p ) => {
 
   p.draw = function() {
     p.background(0);
+    p.drawText();
+    p.comptadorText();
 
     arrayRoca.forEach((item)=> {
   	   item.showInstanceMode(p,rocaImg);
@@ -138,24 +146,19 @@ const s = ( p ) => {
 
     //comprobar choque rocas
     for(let i=0; i< arrayRoca.length;i++){
-      if(pacman.testCollideRock(p,arrayRoca[i])) {
-          //tornar el pacman a la posicio de inici treient li una vida i fent el soroll del xoc.
-          p.pacmanSpawn();
-      }
+      pacman.testCollideRock(p,arrayRoca[i])
+
     }
     //comprobar choque comida
     for(let i=0; i< arrayMenjar.length;i++){
       if(pacman.testCollideMenjar(p,arrayMenjar[i])){
         arrayMenjar.splice(i,1);
         pacman.score = pacman.score +1;
+
       }else{
         console.log("No menja");
       }
     }
-      //funcoins de dubuixar al canvas
-      p.drawText();
-      p.comptadorText();
-
     //fer lo mateix amb els altres tipus de menjars
 
     //comprovarVictoria
@@ -167,8 +170,8 @@ const s = ( p ) => {
     //comprovarDerrota
     if(pacman.lives === 0){
       console.log("derrota");
+      pacmanMort.play();
       p.gameOver();
-      p.noLoop();
     }
 
       switch (pacman.direction) {
@@ -187,8 +190,9 @@ const s = ( p ) => {
   }
 
 
-
  p.keyTyped = function() {
+     songPartidaInici.stop();
+     pacmanMoviment.play();
       if (p.key === 'd'){
         console.log("Estem a dins de moure cap a la dreta");
         pacman.moveRight();
@@ -210,9 +214,6 @@ const s = ( p ) => {
         console.log("coordx",pacman.coordY);
       }
   }
-/*  p.eatRock = function(arrayRoca){
-    var distanceRockPacman = dist( this.x, pacman.coordY, arrayRoca.coordX, arrayRoca.coordY);
-  };*/
 
 
 }
