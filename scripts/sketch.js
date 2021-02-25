@@ -103,7 +103,7 @@ const s = ( p ) => {
         seconds = timer % 60;
         p.text(minutes+":"+seconds, 300, 647);
 
-        if (timer < 1) {
+        if (timer == 0) {
             p.gameOver();
         }
     }
@@ -118,6 +118,9 @@ const s = ( p ) => {
         p.textSize(fontGameOver);
         p.text("GAME OVER", 200, 647);
         p.noLoop();
+
+        pacmanMort.play();
+        pacmanMoviment.stop();
         //p.restartGame();
     }
 
@@ -170,7 +173,6 @@ const s = ( p ) => {
     //comprovarDerrota
     if(pacman.lives === 0){
       console.log("derrota");
-      pacmanMort.play();
       p.gameOver();
     }
 
@@ -192,7 +194,9 @@ const s = ( p ) => {
 
  p.keyTyped = function() {
      songPartidaInici.stop();
-     pacmanMoviment.play();
+     if(pacman.lives >0 ) {
+         pacmanMoviment.play();
+     }
       if (p.key === 'd'){
         console.log("Estem a dins de moure cap a la dreta");
         pacman.moveRight();

@@ -52,6 +52,18 @@ function funcioInfo() {
         +"Informació del hostname: "+window.location.protocol+ ", "
         +window.location.host +", "+ window.location.origin+ ", "+ window.location.pathname);
 }
+function funcioAutor() {
+    alert("Crèdits al autor:\n" +
+        "Galin Kalinov Yordanov\n"+
+        "El joc ha estat creat a la UF2 de M8 del DAW 2020/2021\n"+
+        "Drets de autors reservats, consulta amb l'autor per la distribució del joc");
+}
+function helpInfo() {
+    alert("Això és la versió 1.0 del Pacman del Galin.\n" +
+        "FUNCIONALITAT: Utilitza per fer el moviment les tecles: 'W' 'A' 'S' 'D'\n"+
+        "L'bjectiu és obtenir la màxima puntuació en menys temps sense perdre cap vida!\n"+
+        "La derrota es fa quant les teves vides o el temps han arribat a '0' ");
+}
 
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
