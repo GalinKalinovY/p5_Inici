@@ -10,6 +10,7 @@ class Game {
      this.rowGame = ROWS;
      this.columnGame = COLUMNS;
      this.sizeImage = SIZE_IMAGE;
+     this.dificulty = 1;
 
      this.maze = [//MAZE ES EL MAPA ON TINDREM LES BOLES I LES ROQUES. HO DEFINIM EN 0 I 1. 1 ES ROCA.
                   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],

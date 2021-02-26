@@ -12,10 +12,16 @@ const s = ( p ) => {
   var fontGameOver = 35;
   var timer;
   var seconds, minutes;
-  var button;
   var songPartidaInici;
   var pacmanMoviment;
   var pacmanMort;
+  //input boxes
+  var inputun, inputpass;
+  //button
+  var loginButton;
+  //messages
+  var creatorLogin, UwULogin, loginM, wrong;
+
 
   p.preload = function() {
     //loading all three images
@@ -35,27 +41,57 @@ const s = ( p ) => {
   }
 
   p.setup = function() {
+      p.createCanvas(jocActual.rowGame*jocActual.sizeImage, jocActual.columnGame*jocActual.sizeImage); // Size must be the first statement
+      pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
+      p.frameRate=30;
+
+      //NOU USUARI
 
       p.iniciJoc();
 
-      /*button = p.createButton('Reiniciar Partida');
-      button.position(19, 19);
-      button.mousePressed(p.restartGame);
-      */
+      p.loginUsuari();
+
 
   }
+  p.loginUsuari = function () {
+      /*button = p.createButton('Reiniciar Partida');
+     button.position(19, 19);
+     button.mousePressed(p.restartGame);
+     */
+      //input username
+      inputun = p.createInput('Username');
+      inputun.position(1150, 25);
+      //input password
+      inputpass = p.createInput('Password');
+      inputpass.position(1400, 25);
+
+      //login button
+      loginButton = p.createButton('Login');
+      loginButton.position(1650,25);
+      //loginButton.mousePressed(login);
+  }
     p.iniciJoc = function(){//funcio de iniciar el joc on tindrem el pacman, timer i mes coses inicialitzades.
-      pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
+      p.noLoop();
+      pacman.coordX = 9*jocActual.sizeImage;
+      pacman.coordY = 10*jocActual.sizeImage;
       pacman.lives= 3;
       pacman.score= 0;
-      p.loop();
       p.clear();
-      timer=120;
+      p.loop();
       p.dibuixarMapa();
-      songPartidaInici.play();
+
+
+      //agafar la doficultat del usuari introduida. localstorage.getItem("dificulty");
+
+      //awitch per la dificultat , si es 1 mes temps, 2...
+      timer=20;
+
+
+
     }
     p.dibuixarMapa = function(){//funcio de dibuixarMapa on tindrem a dins el maze i el canvas.
-        p.createCanvas(jocActual.rowGame*jocActual.sizeImage, jocActual.columnGame*jocActual.sizeImage); // Size must be the first statement
+        songPartidaInici.play();
+
         for (let i=0 ; i < jocActual.maze.length;i++) {
            for (let j=0; j < jocActual.maze.length;j++) {
               if ( jocActual.maze[i][j] === 1){
@@ -87,16 +123,14 @@ const s = ( p ) => {
         p.text(pacman.lives, 570, 647);
     }
     p.comptadorText = function (){//funcio del comptador de la partida.
-
         setInterval(p.comptadorText, 100000);
-
       /*if (p.frameCount % 60 == 0 && timer > 0) {
             timer -=1;
         }
         if (timer == 0) {
             p.gameOver();
         }*/
-        if (p.frameCount % 60 == 0 && timer > 0) {
+        if (p.frameCount % p.frameRate == 0 && timer > 0) {
             timer-=1;
         }
         minutes = p.floor(timer/60);
@@ -114,26 +148,15 @@ const s = ( p ) => {
         p.noLoop();
     }
     p.gameOver = function (){//funcio de la derrota final
+        p.noLoop();
         p.fill('red');
         p.textSize(fontGameOver);
         p.text("GAME OVER", 200, 647);
-        p.noLoop();
 
         pacmanMort.play();
         pacmanMoviment.stop();
-        //p.restartGame();
     }
 
-    p.restartGame= function (){//funcio de reiniciar la partida.
-        pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
-        pacman.lives= 3;
-        pacman.score= 0;
-        p.loop();
-        p.clear();
-        p.setup();
-        p.draw();
-        timer=120;
-    }
 
   p.draw = function() {
     p.background(0);
@@ -198,27 +221,22 @@ const s = ( p ) => {
          pacmanMoviment.play();
      }
       if (p.key === 'd'){
-        console.log("Estem a dins de moure cap a la dreta");
         pacman.moveRight();
         console.log("coordx",pacman.coordX);
       }
       if (p.key === 'a'){
-        console.log("Estem a dins de moure cap a l'esquerra");
         pacman.moveLeft();
         console.log("coordx",pacman.coordX);
       }
       if (p.key === 'w'){
-        console.log("Estem a dins de moure cap a dalt");
         pacman.moveUp();
         console.log("coordx",pacman.coordY);
       }
       if (p.key === 's'){
-        console.log("Estem a dins de moure cap a baix");
         pacman.moveDown();
         console.log("coordx",pacman.coordY);
       }
   }
-
 
 }
 var myp5 = new p5(s, 'myContainer');
