@@ -75,6 +75,12 @@ body {
   width: 500px;
   margin-left: 28%;
 }
+.imgHomePacman{
+  margin-left: 250px;
+  width: 70%;
+  /*image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(255, 0, 0, 0.5));*/
+
+}
 main {
   display: block;
   margin-top: -10px;
@@ -82,7 +88,36 @@ main {
   margin-bottom: 10%;
 
 }
-
+input[type=text] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid red;
+  border-radius: 4px
+}
+input[type=password] {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid red;
+  border-radius: 4px
+}
+input[type=text]:focus {
+  background-color: #ffe2de;
+}
+select {
+  width: 30%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+}
+form{
+  margin-left: auto;
+  margin-right: auto;
+}
 /**
  * Correct the font size and margin on `h1` elements within `section` and
  * `article` contexts in Chrome, Firefox, and Safari.

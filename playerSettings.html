@@ -23,17 +23,33 @@
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href=".">Home</a>
+        <a href="index.html">Home</a>
         <a href="javascript:void(0)" onclick="funcioInfo()">Info</a>
         <a href="homePacman.html">Start Game</a>
         <a href="javascript:void(0)" onclick="funcioAutor()">Info Autor</a>
         <a href="javascript:void(0)" onclick="helpInfo()">Help</a>
-        <a href="playerSettings.html" >Player Settings</a>
+        <a href="." onclick="helpInfo()">Player Settings</a>
       </div>
       <span class="menu" style="font-size:30px;cursor:pointer; color: white" onclick="openNav()">&#9776; Menu</span>
     </div>
 
-  <img CLASS="imgHomePacman" src="imatges/pacmanTheme.png" alt="pacmanTheme">
+  <h2>HTML Forms</h2>
+
+  <form action="/action_page.php" id="playerSettings">
+      <label for="nomUsuari">Nom d'usuari:</label><br>
+      <input type="text" id="nomUsuari" name="nomUsuari" value=""><br>
+      <label for="contra">Contrasenya: </label><br>
+      <input type="password" id="contra" name="contra" value=""><br>
+      <label for="dificultat">Dificultat:</label><br>
+        <select  name="dificultat" id="dificultat" form="playerSettings">
+            <option value="1">Easy</option>
+            <option value="2">Medium</option>
+            <option value="3">Hard</option>
+        </select>
+      <br><br>
+      <input type="submit" value="Submit">
+  </form>
+
 
 </body>
 

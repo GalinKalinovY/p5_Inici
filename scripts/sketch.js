@@ -217,7 +217,7 @@ const s = ( p ) => {
 
  p.keyTyped = function() {
      songPartidaInici.stop();
-     if(pacman.lives >0 ) {
+     if(pacman.lives > 0 ) {
          pacmanMoviment.play();
      }
       if (p.key === 'd'){
