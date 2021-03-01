@@ -15,13 +15,6 @@ const s = ( p ) => {
   var songPartidaInici;
   var pacmanMoviment;
   var pacmanMort;
-  //input boxes
-  var inputun, inputpass;
-  //button
-  var loginButton;
-  //messages
-  var creatorLogin, UwULogin, loginM, wrong;
-
 
   p.preload = function() {
     //loading all three images
@@ -41,34 +34,27 @@ const s = ( p ) => {
   }
 
   p.setup = function() {
-      p.createCanvas(jocActual.rowGame*jocActual.sizeImage, jocActual.columnGame*jocActual.sizeImage); // Size must be the first statement
-      pacman = new Pacman(9*jocActual.sizeImage,10*jocActual.sizeImage);
-      p.frameRate=30;
+      //abans de crear el canvas mirar la dificultat del jocs per el localstorage
+      var dificultat= localStorage.getItem("dificultat");
 
-      //NOU USUARI
+      if(dificultat === null){
+          p.noLoop();
+      }else {
+            alert(dificultat);
+          p.createCanvas(jocActual.rowGame * jocActual.sizeImage, jocActual.columnGame * jocActual.sizeImage); // Size must be the first statement
+          pacman = new Pacman(9 * jocActual.sizeImage, 10 * jocActual.sizeImage);
+          p.frameRate = 30;
 
-      p.iniciJoc();
+          //NOU USUARI
 
-      p.loginUsuari();
+          p.iniciJoc();
 
+          //p.loginUsuari();
+      }
 
   }
   p.loginUsuari = function () {
-      /*button = p.createButton('Reiniciar Partida');
-     button.position(19, 19);
-     button.mousePressed(p.restartGame);
-     */
-      //input username
-      inputun = p.createInput('Username');
-      inputun.position(1150, 25);
-      //input password
-      inputpass = p.createInput('Password');
-      inputpass.position(1400, 25);
 
-      //login button
-      loginButton = p.createButton('Login');
-      loginButton.position(1650,25);
-      //loginButton.mousePressed(login);
   }
     p.iniciJoc = function(){//funcio de iniciar el joc on tindrem el pacman, timer i mes coses inicialitzades.
       p.noLoop();
@@ -82,6 +68,7 @@ const s = ( p ) => {
 
 
       //agafar la doficultat del usuari introduida. localstorage.getItem("dificulty");
+
 
       //awitch per la dificultat , si es 1 mes temps, 2...
       timer=20;

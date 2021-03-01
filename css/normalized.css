@@ -89,7 +89,7 @@ main {
 
 }
 input[type=text] {
-  width: 30%;
+  width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -97,7 +97,7 @@ input[type=text] {
   border-radius: 4px
 }
 input[type=password] {
-  width: 30%;
+  width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
@@ -108,15 +108,19 @@ input[type=text]:focus {
   background-color: #ffe2de;
 }
 select {
-  width: 30%;
+  width: 50%;
   padding: 16px 20px;
   border: none;
   border-radius: 4px;
   background-color: #f1f1f1;
 }
 form{
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 32%;
+  margin-top: 5%;
+  color: white;
+  font-family: "Century Schoolbook L";
+  font-size: x-large;
+  margin-bottom: 15%;
 }
 /**
  * Correct the font size and margin on `h1` elements within `section` and

@@ -13,8 +13,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script type="text/javascript" src="scripts/funcionalitatMenu.js"></script>
-
+    <script type="text/javascript" src="scripts/funcionalitatMenu.js"></script>
+    <script type="text/javascript" src="scripts/playerSettings.js"></script>
 </head>
 
 <body>
@@ -33,9 +33,7 @@
       <span class="menu" style="font-size:30px;cursor:pointer; color: white" onclick="openNav()">&#9776; Menu</span>
     </div>
 
-  <h2>HTML Forms</h2>
-
-  <form action="/action_page.php" id="playerSettings">
+  <form action="javascript:formulariUsuari();" id="playerSettings">
       <label for="nomUsuari">Nom d'usuari:</label><br>
       <input type="text" id="nomUsuari" name="nomUsuari" value=""><br>
       <label for="contra">Contrasenya: </label><br>
