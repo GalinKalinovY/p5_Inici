@@ -28,16 +28,18 @@
         <a href="homePacman.html">Start Game</a>
         <a href="javascript:void(0)" onclick="funcioAutor()">Info Autor</a>
         <a href="javascript:void(0)" onclick="helpInfo()">Help</a>
-        <a href="." onclick="helpInfo()">Player Settings</a>
+        <a href=".">Player Settings</a>
       </div>
       <span class="menu" style="font-size:30px;cursor:pointer; color: white" onclick="openNav()">&#9776; Menu</span>
     </div>
 
   <form action="javascript:formulariUsuari();" id="playerSettings">
       <label for="nomUsuari">Nom d'usuari:</label><br>
-      <input type="text" id="nomUsuari" name="nomUsuari" value=""><br>
+      <input type="text" id="nomUsuari" name="nomUsuari"><br>
+
       <label for="contra">Contrasenya: </label><br>
-      <input type="password" id="contra" name="contra" value=""><br>
+      <input type="password" id="contra" name="contra" ><br>
+
       <label for="dificultat">Dificultat:</label><br>
         <select  name="dificultat" id="dificultat" form="playerSettings">
             <option value="1">Easy</option>
@@ -48,7 +50,10 @@
       <input type="submit" value="Submit">
   </form>
 
-
+  <footer>
+      <p>Author: Galin Kalinov<br>
+          <a href="mailto:gyordanov@almata.cat">gyordanov@almata.cat</a></p>
+  </footer>
 </body>
 
 </html>

@@ -2,13 +2,18 @@
 
 function formulariUsuari (){
 
-    var nomUsuari = document.getElementById("nomUsuari").value;
-    var contraUsuari = document.getElementById("contra").value;
-    var dificultat = document.getElementById("dificultat").value;
+    let nomUsuari = document.getElementById("nomUsuari").value;
+    let contraUsuari = document.getElementById("contra").value;
+    let dificultat = document.getElementById("dificultat").value;
 
-    alert("hola"+nomUsuari+ "contra"+contraUsuari+ "dificultat"+ dificultat);
 
-    localStorage.setItem("nomUsuari", nomUsuari);
-    localStorage.setItem("contra", contraUsuari);
-    localStorage.setItem("dificultat", dificultat);
+
+    if(nomUsuari != "" && contraUsuari != "" ){
+        alert("Usuari creat!");
+        localStorage.setItem("nomUsuari", nomUsuari);
+        localStorage.setItem("contra", contraUsuari);
+        localStorage.setItem("dificultat", dificultat);
+    }else {
+        alert("Has de introduir totes les dades del formulari!!!!");
+    }
 }
