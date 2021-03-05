@@ -6,6 +6,7 @@ const s = ( p ) => {
   var arrayMenjar = [];
   var pacman;
   var arrayBanana = [];
+  var usuarisLog = [];
 
   var font,fontsize= 25;
   var fontGameOver = 35;
@@ -45,7 +46,8 @@ const s = ( p ) => {
       //abans de crear el canvas mirar la dificultat del jocs per el localstorage
       var dificultat= localStorage.getItem("dificultat");
       var usuari= localStorage.getItem("nomUsuari");
-      if(dificultat === null && usuari  === null){
+      if(dificultat === null && usuari === null){
+          alert("Has de introduir un usuari al Player Settings per començar el joc!!!");
           p.noLoop();
       }else {
           p.createCanvas(jocActual.rowGame * jocActual.sizeImage, jocActual.columnGame * jocActual.sizeImage); // Size must be the first statement
@@ -61,6 +63,7 @@ const s = ( p ) => {
 
   }
   p.loginUsuari = function () {
+      var dificultat= localStorage.getItem("dificultat");
       var usuari= localStorage.getItem("nomUsuari");
       var contrasenya= localStorage.getItem("contra");
 
@@ -76,6 +79,9 @@ const s = ( p ) => {
       loginUsuari.style('font-family', 'Brush Script MT');
       loginUsuari.position(1350,25);
       //alert("Benvingut "+ usuari+" al joc PacMan");
+
+      usuarisLog.push(usuari,contrasenya,dificultat);
+      console.log("Els usuaris: \n"+ usuarisLog);
   }
     p.iniciJoc = function(){//funcio de iniciar el joc on tindrem el pacman, timer i mes coses inicialitzades.
       p.noLoop();
@@ -248,11 +254,7 @@ const s = ( p ) => {
      }else{
          pacmanMovimentSo.play();
      }
-     if(pacmanMovimentSo.isPlaying()){
-         pacmanMovimentSo.stop();
-     }else{
-         pacmanMovimentSo.play();
-     }
+
       if (p.key === 'd'){
         pacman.moveRight();
         console.log("coordx",pacman.coordX);
