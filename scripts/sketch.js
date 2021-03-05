@@ -46,7 +46,7 @@ const s = ( p ) => {
       //abans de crear el canvas mirar la dificultat del jocs per el localstorage
       var dificultat= localStorage.getItem("dificultat");
       var usuari= localStorage.getItem("nomUsuari");
-      if(dificultat === null && usuari === null){
+      if(dificultat === null && nomUsuari === ""){
           alert("Has de introduir un usuari al Player Settings per començar el joc!!!");
           p.noLoop();
       }else {
