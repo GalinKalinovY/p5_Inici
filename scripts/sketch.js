@@ -44,8 +44,8 @@ const s = ( p ) => {
   p.setup = function() {
       //abans de crear el canvas mirar la dificultat del jocs per el localstorage
       var dificultat= localStorage.getItem("dificultat");
-
-      if(dificultat === null){
+      var usuari= localStorage.getItem("nomUsuari");
+      if(dificultat === null && usuari  === null){
           p.noLoop();
       }else {
           p.createCanvas(jocActual.rowGame * jocActual.sizeImage, jocActual.columnGame * jocActual.sizeImage); // Size must be the first statement
