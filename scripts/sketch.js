@@ -46,6 +46,7 @@ const s = ( p ) => {
       var dificultat= localStorage.getItem("dificultat");
 
       if(dificultat === null){
+          alert("Has de introduir un usuari al Player Settings per començar el joc!!!");
           p.noLoop();
       }else {
           p.createCanvas(jocActual.rowGame * jocActual.sizeImage, jocActual.columnGame * jocActual.sizeImage); // Size must be the first statement
@@ -248,11 +249,7 @@ const s = ( p ) => {
      }else{
          pacmanMovimentSo.play();
      }
-     if(pacmanMovimentSo.isPlaying()){
-         pacmanMovimentSo.stop();
-     }else{
-         pacmanMovimentSo.play();
-     }
+
       if (p.key === 'd'){
         pacman.moveRight();
         console.log("coordx",pacman.coordX);
