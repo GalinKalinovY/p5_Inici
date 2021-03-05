@@ -49,6 +49,7 @@ const s = ( p ) => {
       if(dificultat === null && nomUsuari === ""){
           alert("Has de introduir un usuari al Player Settings per començar el joc!!!");
           p.noLoop();
+          p.clear();
       }else {
           p.createCanvas(jocActual.rowGame * jocActual.sizeImage, jocActual.columnGame * jocActual.sizeImage); // Size must be the first statement
           pacman = new Pacman(9 * jocActual.sizeImage, 10 * jocActual.sizeImage);
